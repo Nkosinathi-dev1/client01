@@ -1,1 +1,16 @@
-<p>register works!</p>
+<h2>Register</h2>
+
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
+  <label>Email:</label>
+  <input formControlName="email" type="email" />
+
+  <label>Password:</label>
+  <input formControlName="password" type="password" />
+
+  <label>Confirm Password:</label>
+  <input formControlName="confirmPassword" type="password" />
+
+  <button type="submit">Register</button>
+</form>
+
+<div *ngIf="error" class="error">{{ error }}</div>
