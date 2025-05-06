@@ -1,1 +1,29 @@
-<p>check-in works!</p>
+<h2>Visitor Check-In</h2>
+
+<form [formGroup]="checkInForm" (ngSubmit)="submit()">
+  <div>
+    <label>Full Name</label>
+    <input type="text" formControlName="fullName" />
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" formControlName="email" />
+  </div>
+
+  <div>
+    <label>Phone</label>
+    <input type="text" formControlName="phone" />
+  </div>
+
+  <div>
+    <label>Reason for Visit (optional)</label>
+    <input type="text" formControlName="reason" />
+  </div>
+
+  <button type="submit" [disabled]="checkInForm.invalid">Check In</button>
+</form>
+
+<div *ngIf="message" style="margin-top: 1rem; color: green;">
+  {{ message }}
+</div>

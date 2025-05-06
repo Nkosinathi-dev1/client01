@@ -30,7 +30,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
   
-  private apiUrl = `${environment.apiUrl}/auth`; 
+  private apiUrl = `${environment.authApi}/auth`; 
 
   constructor(
     private http: HttpClient,

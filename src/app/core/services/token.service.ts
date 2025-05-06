@@ -6,21 +6,35 @@ export class TokenService {
   private refreshKey = 'refresh_token';
 
   saveTokens(tokens: { accessToken: string; refreshToken: string }): void {
-    localStorage.setItem(this.accessKey, tokens.accessToken);
-    localStorage.setItem(this.refreshKey, tokens.refreshToken);
+    if (typeof window !== 'undefined') {
+      console.log('Saving Access Token:', tokens.accessToken);
+      console.log('Saving Refresh Token:', tokens.refreshToken);
+      localStorage.setItem(this.accessKey, tokens.accessToken);
+      localStorage.setItem(this.refreshKey, tokens.refreshToken);
+    }
   }
 
   getAccessToken(): string | null {
-    return localStorage.getItem(this.accessKey);
+    const token = typeof window !== 'undefined'
+      ? localStorage.getItem(this.accessKey)
+      : null;
+    console.log('Retrieved Access Token:', token);
+    return token;
   }
 
   getRefreshToken(): string | null {
-    return localStorage.getItem(this.refreshKey);
+    const token = typeof window !== 'undefined'
+      ? localStorage.getItem(this.refreshKey)
+      : null;
+    console.log('Retrieved Refresh Token:', token);
+    return token;
   }
 
   clearTokens(): void {
-    localStorage.removeItem(this.accessKey);
-    localStorage.removeItem(this.refreshKey);
+    if (typeof window !== 'undefined') {
+      console.log('Clearing tokens from storage');
+      localStorage.removeItem(this.accessKey);
+      localStorage.removeItem(this.refreshKey);
+    }
   }
 }
-
